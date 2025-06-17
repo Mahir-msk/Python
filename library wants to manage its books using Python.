@@ -1,0 +1,64 @@
+Problem:
+A library wants to manage its books using Python. 
+
+
+Each book has:
+Title
+Author
+Genre
+Year of publication
+
+Tasks:
+Take input for 5 books and store them using a list of dictionaries.
+Create a set of all unique genres.
+Create a tuple of all authors.
+Print all books published after 2010.
+Add a new book and remove an old one based on title.
+------------------------------------------------------------------------------------------
+Solution
+------------------------------------------------------------------------------------------
+books=[]
+for i in range(5):
+    print(f"\nEnter details for book{i+1}:")
+    title=input("title: ")
+    author=input("author: ")
+    genre=input("genre: ")
+    year=int(input("entre year of publication: "))
+    books.append({
+        'title':title,
+        'author':author,
+        'genre':genre,
+        'year':year
+                  })
+genres={book['genre'] for book in books}
+print("\nUnique Genres: ",genres)
+
+authors=tuple(book['auhtor'] for book in books)
+print("\nAll authors in tuple: ",authors)
+
+print("\nBooks published aftre 2010: ")
+for b in books:
+    if b['year']>2010:
+        print(b)
+
+print("\nAdd a new book")
+n_title=input("title: ")
+n_author=input("author: ")   
+n_genre=input("genre: ")
+n_year=int(input("entre year of publication: "))
+
+n_book={
+    'n_title':title,
+    'n_author':author,
+    'n_genre':genre,
+    'n_year':year
+}
+
+books.append(n_book)
+
+remove_title=input("\nEntre the title you want to remove: ")
+books=[b for b in books if b['title']!=remove_title]
+print("\nUpdated book")
+for b in books:
+    print(b)
+
