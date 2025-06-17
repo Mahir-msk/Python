@@ -1,0 +1,72 @@
+Simulate a restaurant order system.
+Menu has items with prices ()
+Customer orders multiple items ()
+Tasks:
+
+
+Show menu to the user.
+
+Let them choose 5 items (with quantity), and store the order.
+
+Calculate total bill.
+
+Create a of unique ordered items.
+Convert the final order summary to a for record-keeping.
+: Update the menu dynamically (e.g., add a new item or change price).
+---------------------------------------------------------------------
+Solution
+---------------------------------------------------------------------
+
+menu={
+    "pizza":250,
+    "puridal":260,
+    "paneer":270,
+    "pasta":280,
+    "pastry":290,
+}
+
+print("Hello sir Here is Our Menu\n")
+print("===MeNu===")
+for i,p in menu.items():
+    print(f"{i}:₹{p}")
+print("That was our menu kindly choose what do you want below")
+print("================")
+order=[]
+
+# Step 2: Take order (5 items)
+for i in range(5):
+    item=input(f"\nEnter item{i+1} from menu: ").strip()
+    if item not in menu:
+        print("Item not on menu. try again.")
+        continue
+    quantity=int(input(f"Enter the quantity for {item}: "))
+    order.append({"item":item,"Quantity":quantity,"Price":menu[item]})
+
+#  Step 3: Calculate total bill
+total=sum(item["Quantity"]* item["Price"] for item in order)
+print(f"\nTotal bill is : ₹{total}")
+
+# Step 4: Set of unique ordered items
+unqi={item['item'] for item in order}
+print("items ordered: ",unqi)
+#  Step 5: Convert final order summary to a tuple (for record-keeping)
+
+ordr_sum=tuple((item["item"],item["Quantity"],item["Price"]) for item in order)
+print("\n Order summary: ")
+print(ordr_sum)
+
+# Step 6: Update the menu
+print("\n-----Menu Update-----")
+
+ch=input("Any change for the order? (Y/N): ").strip().lower()
+if ch=='y':
+    new_item = input("Enter the item name: ").strip()
+    new_price = int(input(f"Enter new price for {new_item}: "))
+    menu[new_item] = new_price
+    print(f"Updated Menu Item: {new_item} - ₹{new_price}")
+else:
+    print("Thank You")
+if ch=='y':
+    print("\n=== Updated Menu ===")
+    for item, price in menu.items():
+        print(f"{item}: ₹{price}")
